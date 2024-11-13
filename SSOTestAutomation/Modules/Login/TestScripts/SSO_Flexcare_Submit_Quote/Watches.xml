@@ -1,0 +1,4 @@
+﻿<Properties>
+  <WatchEntry0 value="Obj_Wbtbl_crd_list.GetCellData(i,2)" />
+  <WatchEntry1 value="Obj_Wbtbl_crd_list.RowCount" />
+</Properties>

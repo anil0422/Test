@@ -1,0 +1,176 @@
+
+'==========================================================================================================================
+' Function 			: CreateSummaryTable
+' Purpose 			: This is to create summary table with specified column header(s)
+' Designed By		: Pavanraj Idoor
+'==========================================================================================================================
+	
+Function CreateSummaryTable(StrSumRptFileName)
+
+ dim fs
+ dim filestring
+
+ Set fs = CreateObject("Scripting.FileSystemObject")
+ Set filestring  =  fs.OpenTextFile(StrSumRptFileName, 8,true)
+   
+	 filestring.WriteLine(" <Table Border=1 width =1250 cellpadding=3 cellspacing=0 bordercolor=#e5ffff>")
+	 filestring.WriteLine(" <tr align=left bgcolor=aliceblue>")
+	 filestring.WriteLine(" <th width=100><font color=#FFFFFF>TestCaseID</th>")
+	 filestring.WriteLine(" <th width = 300><font color=#FFFFFF >Test Script Name</th>")
+	 filestring.WriteLine(" <th width=40><font color=#FFFFFF>Status</th>")
+	 filestring.WriteLine(" <th width=80><font color=#FFFFFF>Start Time</th>")
+	 filestring.WriteLine(" <th  width=80><font color=#FFFFFF>End Time</th>")
+	 filestring.WriteLine(" <th  width=80><font color=#FFFFFF>Duration</th>")
+	 filestring.WriteLine(" <th  width=80><font color=#FFFFFF>ScreenShot</th>")
+	 filestring.WriteLine(" </tr>")
+   
+End Function
+
+
+
+'==========================================================================================================================
+' Function 			: CreateSummaryRow
+' Purpose 			: This is to write the final test result of particular test case /script into the specified HTML file
+' Designed By		: Pavanraj Idoor
+' Modified date		: 
+'==========================================================================================================================
+
+Function CreateSummaryRow(StrSumRptFileName,StrDtlRptFileName,StrTestCaseID,StrTestCaseName,StrSumResultStatus,StrStartTime,StrEndTime,strDuration,strSumsnapshot)
+
+ 
+ dim fs
+ dim filestring
+
+ If environment("flag")=1 Then
+	environment("strTime")=environment("strTime_QC")
+ End If
+
+ Set fs = CreateObject("Scripting.FileSystemObject")
+ Set filestring  =  fs.OpenTextFile(StrSumRptFileName, 8,true)
+
+  filestring.WriteBlankLines(1)
+  filestring.WriteLine("</tr>")
+  filestring.WriteLine("<tr align=left>")
+  filestring.WriteLine("<td align=left bgColor=aliceblue><font color=black face=HPFutura Book size=2><a href = "& Replace(StrDtlRptFileName,"C:\SSOTestAutomation\TestResults","..\") & " > "& StrTestCaseID & environment("strTime") &"</a></td>")
+  filestring.WriteLine("<td align=left bgColor=aliceblue><font color=black face=HPFutura Book size=2>"& StrTestCaseName &"</td>")
+
+  If StrSumResultStatus="Passed" OR StrSumResultStatus="Pass" OR StrSumResultStatus = "PASS" OR StrSumResultStatus = "True" OR StrSumResultStatus = "TRUE"Then
+	filestring.WriteLine("<td align=left bgColor=aliceblue><font color=Green face=HPFutura Book size=2> <font color = Green >PASS</font></td>")
+  Elseif StrSumResultStatus= "Failed" OR StrSumResultStatus= "Fail" OR StrSumResultStatus = "FAIL" OR StrSumResultStatus = "False" OR StrSumResultStatus = "FALSE" Then
+	filestring.WriteLine("<td align=left bgColor=aliceblue><font color=Green face=HPFutura Book size=2> <font color = Red >FAIL</font></td>")
+ Else
+    filestring.WriteLine("<td align=left bgColor=aliceblue><font color=Green face=HPFutura Book size=2> <font color = Blue >DONE</font></td>")
+  End If
+   
+  filestring.WriteLine("<td align=left bgColor=aliceblue><font color=black face=HPFutura Book size=2>"& StrStartTime&"</td>")
+  filestring.WriteLine("<td align=left bgColor=aliceblue><font color=black face=HPFutura Book size=2>"& StrEndTime&"</td>")
+  filestring.WriteLine("<td align=left bgColor=aliceblue><font color=black face=HPFutura Book size=2>"& strDuration&"</td>")
+
+  If StrSumResultStatus= "Failed" OR StrSumResultStatus= "Fail" OR StrSumResultStatus = "FAIL" OR StrSumResultStatus = "False" OR StrSumResultStatus = "FALSE" Then
+	'filestring.WriteLine("<td align=left bgColor=aliceblue><font color=red face=HPFutura Book size=2><a href = "& strSumsnapshot & " /> "& environment("TestName") & "_Screenshot" &"</a></td>")
+	 filestring.WriteLine("<td align=left bgColor=aliceblue><font color=red face=HPFutura Book size=2><a href = "& Replace(strSumsnapshot,"C:\SSOTestAutomation\TestResults","..\") & " /><img src="& Replace(strSumsnapshot,"C:\SSOTestAutomation\TestResults","..\") &" width=60 height=30></td>")
+	else
+	filestring.WriteLine("<td align=left bgColor=aliceblue><font color=red face=HPFutura Book size=2></td>")
+  End IF
+  filestring.WriteLine("</tr>")
+
+End Function
+
+
+
+
+
+'==========================================================================================================================
+' Function 			: CreateSummaryHTML
+' Purpose 			: This is to check and create summary HTML file in the specified location
+' Designed By		: Pavanraj Idoor
+'==========================================================================================================================
+
+
+Function CreateSummaryHTML(StrSumRptFileName,strModuleName,strUrlName,strBrowserName)
+ dim fs
+ dim filestring
+ dim CheckFileExists
+ 
+ If environment("flag")=1 Then
+
+	StrSumRptFileName = StrSumRptFileName & "SummaryReport.html"
+
+		qtpApp.Folders.Add ("[QualityCenter] Subject\Applications\248240:SSO\" & environment("ProjectName") & "\TestResults\SummaryReport"),2
+		strSumReportFileName = "SummaryReport.html"
+		strSumReportFilePath = PathFinder.Locate(strSumReportFileName)
+		environment("strSumReportFilePath") = strSumReportFilePath
+		environment("sumrpt_flag")=0
+		If strSumReportFilePath = "" Then
+			StrSumRptFileName = environment("strDetailedReportPath") & "SummaryReport.html"
+			environment("StrSumRptFileName") = StrSumRptFileName
+			strSumRptFileName = environment("StrSumRptFileName")'PAVAN added
+			Set fs = CreateObject("Scripting.FileSystemObject")
+			Set filestring=  fs.CreateTextFile(StrSumRptFileName,True)
+			 filestring.WriteLine(" <html>")
+			 filestring.WriteLine(" <head><Title>SSO Test Automation Summary Report</Title>")
+			 filestring.WriteLine(" </head>")
+			 filestring.WriteLine(" <body  bgColor=#ccffff><form><font color=#000080 size=5 face=verdana><left>SSO Test Automation Summary Report</left></font></body>")
+			 filestring.WriteLine(" <h1><form><font color=#000080 size=2 face=HPFutura Book><left>Environment URL: "& Environment("URL") &"</left></font></h1>")
+			 filestring.WriteLine(" <h1><form><font color=#000080 size=2 face=HPFutura Book><left>Browser Name:   "& strBrowserName &"</left></font></h1>")
+			 filestring.WriteLine(" <h1><form><font color=#000080 size=2 face=HPFutura Book><left>NOTE: Please click on the respective Test Case ID to view the detailed test execution report for the respective module</left></font></h1>")
+			 filestring.WriteLine(" <Table border = 1 width =1050 cellpadding=3 cellspacing=0 bordercolor=#e5ffff>")
+			 filestring.WriteLine(" <tr align=left bgcolor=#000080>")
+			 filestring.WriteLine(" <th width=100><font color=#FFFFFF>TestCaseID</th>")
+			 filestring.WriteLine(" <th width = 300><font color=#FFFFFF >Test Script Name</th>")
+			 filestring.WriteLine(" <th width=40><font color=#FFFFFF>Status</th>")
+			 filestring.WriteLine(" <th width=80><font color=#FFFFFF>Start Time</th>")
+			 filestring.WriteLine(" <th  width=80><font color=#FFFFFF>End Time</th>")
+			 filestring.WriteLine(" <th  width=80><font color=#FFFFFF>Duration in seconds</th>")
+			 filestring.WriteLine(" <th  width=80><font color=#FFFFFF>ScreenShot</th>")
+			 filestring.WriteLine(" </tr>")
+			 Func_CreateRow strDtlRptFileName,environment("strTestCaseName"),"Summary report file does not exists in the specified location, hence summary report file has been created","DONE",now
+			 strSumRptFileName = environment("StrSumRptFileName")
+			 environment("sumrpt_flag")=1
+		Else
+			 Set fs = CreateObject("Scripting.FileSystemObject")
+			 strSumRptFileName = environment("strSumReportFilePath")
+			 environment("StrSumRptFileName") = environment("strSumReportFilePath")
+			 Set filestring  =  fs.OpenTextFile(environment("strSumReportFilePath"), 8,true)
+			 filestring.WriteBlankLines(1)
+			 Reporter.ReportEvent micDone, "File check", "Summary report file already exists in the specified location, hence result appended with the existing summary report file"
+			 Func_CreateRow strDtlRptFileName,environment("strTestCaseName"),"Summary report file exists in the specified location, hence result appended with the existing summary report file","DONE",now
+		 	 strSumRptFileName = environment("strSumReportFilePath")
+		End If
+		
+ Else
+    	   Set fs = CreateObject("Scripting.FileSystemObject")
+		   CheckFileExists = fs.FileExists(StrSumRptFileName)
+		   If (CheckFileExists) Then
+			 Set filestring  =  fs.OpenTextFile(StrSumRptFileName, 8,true)
+			  filestring.WriteBlankLines(1)
+			  Reporter.ReportEvent micDone, "File check", "Summary report file already exists in the specified location, hence result appended with the existing summary report file"
+			  Func_CreateRow strDtlRptFileName,environment("strTestCaseName"),"Summary report file exists in the specified location, hence result appended with the existing summary report file","DONE",now
+		   Else
+			 Set filestring=  fs.CreateTextFile(StrSumRptFileName,True)
+			 filestring.WriteLine(" <html>")
+			 filestring.WriteLine(" <head><Title>SSO Test Automation Summary Report</Title>")
+			 filestring.WriteLine(" </head>")
+			 filestring.WriteLine(" <body  bgColor=#e5ffff><form><font color=#000080 size=5 face=HPFutura Book><b><u><Center>SSO Test Automation Summary Report</u></b></Center></font></body>")
+			 filestring.WriteLine(" <h1><form><font color=#000080 size=2 face=HPFutura Book><left>Environment URL: "& Environment("URL") &"</left></font></h1>")
+			 filestring.WriteLine(" <h1><form><font color=#000080 size=2 face=HPFutura Book><left>Browser Name:   "& strBrowserName &"</left></font></h1>")
+			 filestring.WriteLine(" <h1><form><font color=#000080 size=2 face=HPFutura Book><left>NOTE: Please click on the respective Test Case ID to view the detailed test execution report for the respective module</left></font></h1>")
+			 filestring.WriteLine(" <Table Border=1 width =1250 cellpadding=3 cellspacing=0 bordercolor=#e5ffff>")
+			 filestring.WriteLine(" <tr align=left bgcolor=#10092441>")
+			 filestring.WriteLine(" <th width=100><font color=#000080>TestCaseID</th>")
+			 filestring.WriteLine(" <th width = 300><font color=#000080 >Test Script Name</th>")
+			 filestring.WriteLine(" <th width=40><font color=#000080>Status</th>")
+			 filestring.WriteLine(" <th width=80><font color=#000080>Start Time</th>")
+			 filestring.WriteLine(" <th  width=80><font color=#000080>End Time</th>")
+			 filestring.WriteLine(" <th  width=80><font color=#000080>Duration in seconds</th>")
+			 filestring.WriteLine(" <th  width=80><font color=#000080>ScreenShot</th>")
+			 filestring.WriteLine(" </tr>")
+			 Reporter.ReportEvent micDone, "File check", "Summary report file does not exists in the specified location, hence summary report file has been created"
+			 Func_CreateRow strDtlRptFileName,environment("strTestCaseName"),"Summary report file does not exists in the specified location, hence summary report file has been created","DONE",now
+		   End If
+ End If
+
+End Function
+
+
+

@@ -1,0 +1,172 @@
+
+
+'******************************************
+'File Name:SSOResultLibrarys.vbs
+'FilePath: C:\SSOSmokeTestAutomation\CommonLibrary\ReusableScripts\SSOResultLibrarys.vbs
+'Owner: Pavanraj Idoor
+'Date Created: 17th May 2011
+'Date Modified: 
+'Modified By: Pavanraj Idoor
+'Modified Section/Purpose: Function StartHTML(FileName) was modified to inherit the module name in the HTML report.
+'******************************************
+
+
+
+'==========================================================================================================================
+' Function 			: StartHTML
+' Purpose 			: To create the detail report template in HTML format
+' Designed By		: Pavanraj Idoor
+'==========================================================================================================================
+
+Function StartHTML(FileName)
+'Description - This function will generate a HTML file with the name mentioned in the parameter called 'FileName'
+'Also, we should declare a variable called 'strModuleName' in QTP Expert view pane which will be used in this function.
+
+	Dim fs,filestring
+		Set fs = CreateObject("Scripting.FileSystemObject")
+		CheckFileExists = fs.FileExists(FileName)
+		if (CheckFileExists) Then
+			fs.DeleteFile(FileName)   
+		End if
+
+		fs.CreateTextFile FileName, True
+		Set filestring  =  fs.OpenTextFile(FileName, 2,true)
+		 filestring.WriteLine("<html>")
+		 filestring.WriteLine("<head><Title>Detailed Test Execution Report</Title>")
+         	 filestring.WriteLine("</head>")
+		filestring.WriteLine(" <body  bgColor=#e5ffff></body>")
+	 	 filestring.WriteLine("<a href=http://home.hp.com/hpe/><img src=https://upload.wikimedia.org/wikipedia/commons/4/46/Hewlett_Packard_Enterprise_logo.svg width=100 height=100 align=right /></a>")
+		filestring.WriteLine("<Table border = 1 width =550 cellpadding=2 cellspacing=0>")
+		filestring.WriteLine("<br />")
+		filestring.WriteLine("<br />")
+		filestring.WriteLine("<tr bgcolor=#10092441>")
+		filestring.WriteLine("<th width=300><font color=#000080>System Info</th>")
+		filestring.WriteLine("<th width=250><font color=#000080>Description</th>")
+		filestring.WriteLine("</tr>")
+		filestring.WriteLine("<tr align=left>")
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=3><B>Project Name</B></td>")
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=2> """ + environment("ProjectName")+ """</td>")
+		filestring.WriteLine("</tr>")
+		filestring.WriteLine("<tr align=left>")
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=3><B>Module Name</B></td>")
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=2>""" + environment("strModuleName")+ """</td>")
+		filestring.WriteLine("</tr>")
+		filestring.WriteLine("<tr align=left>")
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=3><B>Test Case Name</B></td>")
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=2>""" + environment("TestName")+ """</td>")
+		filestring.WriteLine("</tr>")
+		filestring.WriteLine("<tr align=left>")
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=3><B>Application Environment</B></td>")
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=2>""" + environment("ApplicationEnv")+ """</td>")
+		filestring.WriteLine("</tr>")
+		filestring.WriteLine("<tr align=left>")
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=3><B>Application URL</B></td>")
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=2>""" + environment("URL")+ """</td>")
+		filestring.WriteLine("</tr>")
+
+		 'filestring.WriteLine("<body  bgColor=alicegreen><form><font color=#000080 size=3 face=calibri><left>Project Name -  """ + environment("ProjectName")+ """</left></font><hr>")
+		 'filestring.WriteLine("<body  bgColor=alicegreen><form><font color=#000080 size=3 face=calibri><left>Module Name -  """ + environment("strModuleName")+ """</left></font><hr>")
+		 'filestring.WriteLine("<body  bgColor=alicegreen><form><font color=#000080 size=3 face=calibri><left>Test Case Name -  """ + environment("TestName")+ """</left></font><hr>")
+		 'filestring.WriteLine("<body  bgColor=alicegreen><form><font color=#000080 size=3 face=calibri><left>Application Environment -  """ + environment("ApplicationEnv")+ """</left></font><hr>")
+        	 'filestring.WriteLine("<body  bgColor=alicegreen><form><font color=#000080 size=3 face=calibri><left>Application URL :  """ + environment("URL")+ """</left></font><hr>")
+
+		If environment("flag")=1 Then
+			Set objQcConnection = QCUtil.QCconnection
+			strQCEnvURL = QCUtil.QCConnection.ServerURL
+			strQCProjectName = QCUtil.QCConnection.ProjectName
+			strQCDomainName = QCUtil.QCConnection.DomainName
+			strExecutedQCUser = QCUtil.QCConnection.UserName
+			Set objQcConnection = Nothing
+			filestring.WriteLine("<body  bgColor=seashell><form><font color=#000080 size=3 face=calibri><left>Executed from -  "" Quality Center ""</left></font><hr>")
+			filestring.WriteLine("<body  bgColor=seashell><form><font color=#000080 size=3 face=calibri><left>QC Env URL -  """ + strQCEnvURL+ """</left></font><hr>")
+			filestring.WriteLine("<body  bgColor=seashell><form><font color=#000080 size=3 face=calibri><left>QC Project -  """ + strQCProjectName+ """</left></font><hr>")
+			filestring.WriteLine("<body  bgColor=seashell><form><font color=#000080 size=3 face=calibri><left>QC Domain -  """ + strQCDomainName+ """</left></font><hr>")
+			filestring.WriteLine("<body  bgColor=seashell><form><font color=#000080 size=3 face=calibri><left>Executed QC User -  """ + strExecutedQCUser+ """</left></font><hr>")
+		Else
+			'filestring.WriteLine("<body  bgColor=alicegreen><form><font color=#000080 size=3 face=calibri><left>Executed from -  "" Local Environment ""</left></font><hr>")
+'			filestring.WriteLine("<body  bgColor=alicegreen><form><font color=#000080 size=3 face=calibri><left>Local User Windows Account Id -  """ + environment("UserName")+ """</left></font><hr>")
+			filestring.WriteLine("<tr align=left>")
+			filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=3><B>Executed from</B></td>")
+			filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=2>"" Local Environment ""</td>")
+			filestring.WriteLine("</tr>")
+			filestring.WriteLine("<tr align=left>")
+			filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=3><B>Local User Windows Account Id</B></td>")
+			filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=2>""" + environment("UserName")+ """</td>")
+			filestring.WriteLine("</tr>")
+		End If
+
+		 'filestring.WriteLine("<body  bgColor=alicegreen><form><font color=#000080 size=3 face=calibri><left>Host / System Name -  """ + environment("LocalHostName")+ """</left></font><hr>")
+		 'filestring.WriteLine("<body  bgColor=alicegreen><form><font color=#000080 size=3 face=calibri><left>Host / System OS -  """ + environment("OS")+ """</left></font><hr>")
+         	 filestring.WriteLine("<tr align=left>")
+		 filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=3><B>Host / System Name</B></td>")
+		 filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=2>""" + environment("LocalHostName")+ """</td>")
+		 filestring.WriteLine("</tr>")
+		 filestring.WriteLine("<tr align=left>")
+		 filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=3><B>Host / System OS</B></td>")
+		 filestring.WriteLine("<td align=left bgColor=aliceblue><font color=#000080 face=HPFutura Book size=2>""" + environment("OS")+ """</td>")
+		 filestring.WriteLine("</tr>")
+		 filestring.WriteLine("</Table>")
+		 filestring.WriteLine("<Table border = 1 width =980 cellpadding=3 cellspacing=0>")
+		 filestring.WriteLine("<br />")
+		 filestring.WriteLine("<br />")
+		 filestring.WriteLine("<tr bgcolor=#10092441>")
+		 filestring.WriteLine("<th width=100><font color=#000080>Test Case</th>")
+		 filestring.WriteLine("<th width=250><font color=#000080>Action Performed on :</th>")
+		 filestring.WriteLine("<th width = 100><font color=#000080 >Status</th>")
+		 filestring.WriteLine("<th width=170><font color=#000080>Execution Time</th>")
+		 filestring.WriteLine("</tr>")
+
+End Function
+
+'==========================================================================================================================
+' Function 			: CreateRow
+' Purpose 			: This is to write the individual validation test result into the detail test result HTML file
+' Designed By		: Pavanraj Idoor
+'==========================================================================================================================
+
+Function Func_CreateRow(FileName,TestCaseName,Action,sResultStatus,Stime)
+
+  Dim fs,filestring,Result
+        
+  Set fs = CreateObject("Scripting.FileSystemObject")
+  Set filestring  =  fs.OpenTextFile(FileName, 8,true)
+  filestring.WriteLine("<tr align=left>")
+  filestring.WriteLine("<td align=left bgColor=aliceblue><font color=black face=HPFutura Book size=2>"& TestCaseName &"</td>")
+
+	If  sResultStatus="Pass" OR sResultStatus="Passed" OR sResultStatus="PASS" Then	  
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=Green face=HPFutura Book size=2>"& Action &"</td>")
+		Result  =" <font color = Green >PASS</font>"
+	ElseIf sResultStatus = "Fail" OR sResultStatus="Failed" OR sResultStatus="FAIL" Then
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=Red face=HPFutura Book size=2>"& Action &"</td>")
+		Result  =" <font color = Red ><b>FAIL</b></font>"
+		strSumResultStatus="FAIL"
+		Desktop.CaptureBitmap strSumsnapshot,True
+	Else
+		filestring.WriteLine("<td align=left bgColor=aliceblue><font color=Blue face=HPFutura Book size=2>"& Action &"</td>")
+		Result = " <font color = Blue >DONE</font>"
+	 End If
+
+   filestring.WriteLine("<td align=left bgColor=aliceblue><font color=Green face=HPFutura Book size=2>"& Result &"</td>")
+   filestring.WriteLine("<td align=left bgColor=aliceblue><font color=black face=HPFutura Book size=2>"& Stime &"</td>")
+   filestring.WriteLine("</tr>")
+
+'Set xl_rpt=CreateObject("Excel.Application")
+'Set Wb_rpt=xl_rpt.Workbooks.Open("C:\SSOTestAutomation\TestResults\DetailedResults\SSO_detailed results.xlsx")
+'Set Ws_rpt=Wb_rpt.Worksheets(1)
+  
+'rcc=Ws_rpt.usedrange.rows.count+1
+'Ws_rpt.cells(rcc,1)=FileName
+'Ws_rpt.cells(rcc,2)=TestCaseName
+'Ws_rpt.cells(rcc,3)=Action
+'Ws_rpt.cells(rcc,4)=sResultStatus
+'Ws_rpt.cells(rcc,5)=Stime
+
+'Wb_rpt.Save
+'Wb_rpt.Close
+'xl_rpt.Quit
+   
+
+End Function
+
+
+

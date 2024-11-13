@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<Results version="1.0">
+<ReportNode type="testrun">
+<ReportNode type="Action">
+<Data>
+    <Name>Action1</Name>
+    <Description />
+    <StartTime>2018-10-03 09:51:26</StartTime>
+    <Result>Done</Result>
+    <InputParameters />
+    <Extension>
+      <IconKey>a3bf8db324d34e2fa5f79e93ca8cc403</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Demo</Name>
+    <ToolName>HPE Unified Functional Testing</ToolName>
+    <ToolVersion>14.1</ToolVersion>
+    <Description />
+    <StartTime>2018-10-03 09:51:23</StartTime>
+    <Duration>11</Duration>
+    <Result>Done</Result>
+    <InputParameters />
+    <Extension>
+      <IconKey>adaf953e1f8b40a0abcfc6272f5ac536</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <Environment>
+      <Timezone>+05:30:00</Timezone>
+      <Locale>English (United States)</Locale>
+      <User>EAD\avenkataram8</User>
+      <CpuInfo>Intel(R) Core(TM) i7-4800MQ CPU @ 2.70GHz</CpuInfo>
+      <NumberOfCores>8</NumberOfCores>
+      <TotalMemory>15641</TotalMemory>
+      <HostName>INCND4132MLZ</HostName>
+      <OSInfo>Windows 7 Service Pack 1 (x64)</OSInfo>
+    </Environment>
+    <TestedApplications />
+    <Links>
+      <Link type="DataTable" reference="Default.xls" displayname="Default Data Table" />
+    </Links>
+  </Data>
+</ReportNode>
+<GeneralInfo>
+    <ResultName>Res1</ResultName>
+    <RunStartTime>2018-10-03 09:51:23</RunStartTime>
+    <Timezone>+05:30:00</Timezone>
+    <OrchestrationToolName>HPE Unified Functional Testing</OrchestrationToolName>
+    <OrchestrationToolVersion>14.1</OrchestrationToolVersion>
+  </GeneralInfo>
+</Results>

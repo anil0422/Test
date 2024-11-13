@@ -1,0 +1,1 @@
+﻿var __testDataSource={items:[{dataFilePath:'Default.xls',dataFileFormat:'excel',dataFileFolder:'C:\\SSOTestAutomation\\Modules\\Login\\TestScripts\\Demo\\Res1',namePairs:[]}]};

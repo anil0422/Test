@@ -1,0 +1,738 @@
+'=================================================OSP Applicagtion Objects Login Module=================================
+
+'=============	Browser and Page Object	==========================
+Set obj_pg_Home=Browser("CreationTime:=0").Page("Micclass:=Page")
+
+
+'=============	Child Objects	==========================
+Set Wbtn_Sgn=Description.Create
+Wbtn_Sgn("name").Value="Sign In "
+Wbtn_Sgn("html tag").Value="A"
+Wbtn_Sgn("role").Value="menuitem"
+Set Obj_Wbtn_Sgn=obj_pg_Home.Link(Wbtn_Sgn)
+
+Set Wbedt_Un=Description.Create
+Wbedt_Un("name").Value="username"
+Wbedt_Un("index").Value=0
+Set Obj_Wbedt_Un=obj_pg_Home.WebEdit(Wbedt_Un)
+
+Set Wbedt_Pwd=Description.Create
+Wbedt_Pwd("name").Value="password"
+Wbedt_Pwd("type").Value="password"
+Wbedt_Pwd("html tag").Value="INPUT"
+Wbedt_Pwd("index").Value=0
+Set Obj_Wbedt_Pwd=obj_pg_Home.WebEdit(Wbedt_Pwd)
+
+Set Lnk_USgn=Description.Create
+Lnk_USgn("name").Value="Sign in"
+Lnk_USgn("index").Value=0
+Set Obj_Lnk_USgn=obj_pg_Home.Link(Lnk_USgn)
+
+Set Wbele_err=Description.Create
+Wbele_err("class").Value="form-error"
+Wbele_err("html tag").Value="UL"
+Set obj_Wbele_err=obj_pg_Home.WebElement(Wbele_err)
+
+
+Set Lnk_Sgt=Description.Create
+Lnk_Sgt("name").Value="Sign Out"
+Lnk_Sgt("index").Value="0"
+Set Obj_Lnk_Sgt=obj_pg_Home.Link(Lnk_Sgt)
+
+'==================================== Product Chid objects=========================
+Set Lnk_My_Prd=Description.Create
+Lnk_My_Prd("name").Value="My Products"
+Lnk_My_Prd("html tag").Value="A"
+Lnk_My_Prd("index").Value=1
+Set Obj_Lnk_My_Prd=obj_pg_Home.Link(Lnk_My_Prd)
+
+Set Wbele_prd=Description.Create
+Wbele_prd("html tag").Value="DIV"
+Wbele_prd("innertext").Value="My Products"
+Wbele_prd("index").value=2
+Set Obj_Wbele_prd=obj_pg_Home.WebElement(Wbele_prd)
+
+Set Wbele_prd_sel=Description.Create
+Wbele_prd_sel("html tag").Value="SPAN"
+Wbele_prd_sel("class").Value="radioSpan"
+Wbele_prd_sel("index").Value=0
+Set Obj_Wbele_prd_sel=obj_pg_Home.WebElement(Wbele_prd_sel)
+
+Set Wbele_prd_ver=Description.Create
+Wbele_prd_ver("html tag").Value="DIV"
+Wbele_prd_ver("class").Value="portlet-content myclass aui-helper-clearfix"
+Wbele_prd_ver("innertext").Value="Your Product saved successfully.*"
+Set Obj_Wbele_prd_ver=obj_pg_Home.WebElement(Wbele_prd_ver)
+
+Set Wbtn_save=Description.Create
+Wbtn_save("name").Value=" Save "
+Wbtn_save("html tag").Value="BUTTON"
+Set Obj_Wbtn_save=obj_pg_Home.WebButton(Wbtn_save)
+
+'===========================Validate Employee Access======================
+Set Lnk_Emp_Acc=Description.Create
+Lnk_Emp_Acc("name").Value="Validate Employee"
+Lnk_Emp_Acc("html tag").Value="A"
+Lnk_Emp_Acc("index").Value="1"
+Set Obj_Lnk_Emp_Acc=obj_pg_Home.Link(Lnk_Emp_Acc)
+
+Set Wbele_Emp_Val=Description.Create
+Wbele_Emp_Val("innertext").Value="Employee Validation"
+Wbele_Emp_Val("html tag").Value="DIV"
+Wbele_Emp_Val("class").Value="left getting_strt_port_title"
+Set Obj_Wbele_Emp_Val=obj_pg_Home.WebElement(Wbele_Emp_Val)
+
+Set Wbedt_Val_empid=Description.Create
+Wbedt_Val_empid("name").Value="\_employeevalidation\_WAR\_hpospportlet\_emailAddress"
+Wbedt_Val_empid("html tag").Value="INPUT"
+Set Obj_Wbedt_Val_empid=obj_pg_Home.WebEdit(Wbedt_Val_empid)
+
+Set Wbedt_Val_Pwd=Description.Create
+Wbedt_Val_Pwd("name").Value="\_employeevalidation\_WAR\_hpospportlet\_password"
+Wbedt_Val_Pwd("html tag").Value="INPUT"
+Set Obj_Wbedt_Val_Pwd=obj_pg_Home.WebEdit(Wbedt_Val_Pwd)
+
+Set Wbbtn_Validate=Description.Create
+Wbbtn_Validate("name").Value="Validate"
+Wbbtn_Validate("html tag").Value="BUTTON"
+Set Obj_Wbbtn_Validate=obj_pg_Home.WebButton(Wbbtn_Validate)
+
+Set Wbele_Valid_Emp_Dtl=Description.Create
+Wbele_Valid_Emp_Dtl("innertext").Value="Please enter valid employee details "
+Wbele_Valid_Emp_Dtl("html tag").Value="DIV"
+Wbele_Valid_Emp_Dtl("class").Value="portlet-msg-error"
+Set Obj_Wbele_Valid_Emp_Dtl=obj_pg_Home.WebElement(Wbele_Valid_Emp_Dtl)
+
+Set Wbele_Valid_succ=Description.Create
+Wbele_Valid_succ("innertext").Value="Employee Validated Successfully "
+Wbele_Valid_succ("html tag").Value="DIV"
+Wbele_Valid_succ("class").Value="portlet-msg-success"
+Set Obj_Wbele_Valid_succ=obj_pg_Home.WebElement(Wbele_Valid_succ)
+
+'==================================File upload Dialog ============================
+
+Set Dlg_fl_upld=Description.Create
+Dlg_fl_upld("text").Value="Message from webpage"
+Dlg_fl_upld("nativeclass").Value="#32770"
+Set Obj_Dlg_fl_upld=Dialog(Dlg_fl_upld)
+
+Set wbtn_ok=Description.Create
+wbtn_ok("text").Value="OK"
+wbtn_ok("nativeclass").Value="button"
+Set obj_wbtn_ok=Obj_Dlg_fl_upld.WinButton(wbtn_ok)
+
+'===================================Forgot User ID objects =============================
+
+Set Lnk_Frt_UID=Description.Create
+Lnk_Frt_UID("name").Value="Forgot User ID "
+Lnk_Frt_UID("html tag").Value="A"
+Set Obj_Lnk_Frt_UID=obj_pg_Home.Link(Lnk_Frt_UID)
+
+Set Wbedt_email=Description.Create
+Wbedt_email("name").Value="email"
+Wbedt_email("html tag").Value="INPUT"
+Set Obj_Wbedt_email=obj_pg_Home.WebEdit(Wbedt_email)
+
+Set Lnk_Lkp_UID=Description.Create
+Lnk_Lkp_UID("name").Value="Look up user ID "
+Lnk_Lkp_UID("html tag").Value="A"
+Set Obj_Lnk_Lkp_UID=obj_pg_Home.Link(Lnk_Lkp_UID)
+
+Set Lnk_mail_err=Description.Create
+Lnk_mail_err("name").Value="This user cannot be found. Please try again."
+Lnk_mail_err("html tag").Value="A"
+Set Obj_Lnk_mail_err=obj_pg_Home.Link(Lnk_mail_err)
+
+'===================================Forgot Password objects =============================
+Set Lnk_Frgt_Pwd=Description.Create
+Lnk_Frgt_Pwd("name").Value="Forgot Password "
+Lnk_Frgt_Pwd("html tag").Value="A"
+Set Obj_Lnk_Frgt_Pwd=obj_pg_Home.Link(Lnk_Frgt_Pwd)
+
+Set Wbedt_Sec_Ans1=Description.Create
+Wbedt_Sec_Ans1("html id").Value="securityAnswer1"
+Wbedt_Sec_Ans1("html tag").Value="INPUT"
+Set Obj_Wbedt_Sec_Ans1=obj_pg_Home.webedit(Wbedt_Sec_Ans1)
+
+Set Wbedt_Sec_Ans2=Description.Create
+Wbedt_Sec_Ans2("html id").Value="securityAnswer2"
+Wbedt_Sec_Ans2("html tag").Value="INPUT"
+Set Obj_Wbedt_Sec_Ans2=obj_pg_Home.webedit(Wbedt_Sec_Ans2)
+
+Set Wbet_Pwd=Description.Create
+Wbet_Pwd("name").Value="password"
+Wbet_Pwd("html tag").Value="INPUT"
+Set Obj_Wbet_Pwd=obj_pg_Home.WebEdit(Wbet_Pwd)
+
+Set Wbet_CPwd=Description.Create
+Wbet_CPwd("name").Value="passwordConfirm"
+Wbet_CPwd("html tag").Value="INPUT"
+Wbet_CPwd("html tag").Value="INPUT"
+Set Obj_Wbet_CPwd=obj_pg_Home.WebEdit(Wbet_CPwd)
+
+Set lnk_Nxt=Description.Create
+lnk_Nxt("name").Value="Next"
+lnk_Nxt("html tag").Value="A"
+Set Obj_lnk_Nxt=obj_pg_Home.Link(lnk_Nxt)
+
+Set Lnk_mail_nf=Description.Create
+Lnk_mail_nf("name").Value="E-mail address not found."
+Lnk_mail_nf("html tag").Value="A"
+Set Obj_Lnk_mail_nf=obj_pg_Home.Link(Lnk_mail_nf)
+
+Set Wbele_pwd_cnfr=Description.Create
+Wbele_pwd_cnfr("innertext").Value="An e-mail message has been sent.*"
+Wbele_pwd_cnfr("html tag").Value="DIV"
+Set Obj_Wbele_pwd_cnfr=obj_pg_Home.WebElement(Wbele_pwd_cnfr)
+
+Set lnk_Sav_chg=Description.Create
+lnk_Sav_chg("html tag").Value="A"
+lnk_Sav_chg("name").Value="Save changes "
+Set Obj_lnk_Sav_chg=obj_pg_Home.Link(lnk_Sav_chg)
+
+Set lnk_chg_pwd=Description.Create
+lnk_chg_pwd("html tag").Value="A"
+lnk_chg_pwd("name").Value="Change Password"
+Set Obj_lnk_chg_pwd=obj_pg_Home.Link(lnk_chg_pwd)
+
+Set Wbedt_Cur_Pwd=Description.Create
+Wbedt_Cur_Pwd("name").Value="currentPassword"
+Wbedt_Cur_Pwd("html tag").Value="INPUT"
+Set Obj_Wbedt_Cur_Pwd=obj_pg_Home.WebEdit(Wbedt_Cur_Pwd)
+
+Set Wbele_Cnf_pwd=Description.Create
+Wbele_Cnf_pwd("class").Value="confirm_txt"
+Wbele_Cnf_pwd("html tag").Value="DIV"
+Set Obj_Wbele_Cnf_pwd=obj_pg_Home.WebElement(Wbele_Cnf_pwd)	
+
+Set lnk_Ctn_site=Description.Create
+lnk_Ctn_site("html tag").Value="A"
+lnk_Ctn_site("name").Value="Continue to site "
+Set Obj_lnk_Ctn_site=obj_pg_Home.Link(lnk_Ctn_site)
+
+'===================================Change Email-ID ====================================
+Set Wbele_chg_mail=Description.Create
+Wbele_chg_mail("innertext").Value="Software Passport Change E-mail Address"
+Wbele_chg_mail("html tag").Value="H1"
+Set Obj_Wbele_chg_mail=obj_pg_Home.WebElement(Wbele_chg_mail)
+
+Set Lnk_Chg_Email=Description.Create
+Lnk_Chg_Email("name").Value="Change Email ID"
+Lnk_Chg_Email("html tag").Value="A"
+Set Obj_Lnk_Chg_Email=obj_pg_Home.Link(Lnk_Chg_Email)
+
+Set Wbedt_Usr_ID=Description.Create
+Wbedt_Usr_ID("name").Value="userId"
+Wbedt_Usr_ID("html tag").Value="INPUT"
+Set Obj_Wbedt_Usr_ID=obj_pg_Home.WebEdit(Wbedt_Usr_ID)
+
+Set Wbedt_Usr_pwd=Description.Create
+Wbedt_Usr_pwd("name").Value="password"
+Wbedt_Usr_pwd("html tag").Value="INPUT"
+Set Obj_Wbedt_Usr_pwd=obj_pg_Home.WebEdit(Wbedt_Usr_pwd)
+
+Set Lnk_Sbmt=Description.Create
+Lnk_Sbmt("name").Value="Submit "
+Lnk_Sbmt("html tag").Value="A"
+Set Obj_Lnk_Sbmt=obj_pg_Home.Link(Lnk_Sbmt)
+
+Set Lnk_chg_err=Description.Create
+Lnk_chg_err("name").Value="This e-mail address is already associated.*"
+Lnk_chg_err("html tag").Value="A"
+Set Obj_Lnk_chg_err=obj_pg_Home.Link(Lnk_chg_err)
+
+Set Wbele_chg_Suc=Description.Create
+Wbele_chg_Suc("innertext").Value="Software Passport Confirmation for Change Email address.|Your HPE Passport account is modified successfully.|Your HP Passport account is modified successfully."
+Wbele_chg_Suc("html tag").Value="DIV"
+Set Obj_Wbele_chg_Suc=obj_pg_Home.WebElement(Wbele_chg_Suc)
+
+'==============================Configuration Items ====================================
+
+Set Lnk_Cnfg_itms=Description.Create
+Lnk_Cnfg_itms("name").Value="Configuration Item.*"
+Lnk_Cnfg_itms("html tag").Value="A"
+Lnk_Cnfg_itms("index").Value=1
+Set Obj_Lnk_Cnfg_itms=obj_pg_Home.Link(Lnk_Cnfg_itms)
+
+Set Wbele_Cnfg_Itms=Description.Create
+Wbele_Cnfg_Itms("innertext").Value="Configuration Items"
+Wbele_Cnfg_Itms("html tag").Value="DIV"
+Wbele_Cnfg_Itms("class").Value="left getting_strt_port_title"
+Set Obj_Wbele_Cnfg_Itms=obj_pg_Home.WebElement(Wbele_Cnfg_Itms)
+
+Set Lnk_nCnfg_itms=Description.Create
+Lnk_nCnfg_itms("name").Value="Create new Configuration Item"
+Lnk_nCnfg_itms("html tag").Value="A"
+Lnk_nCnfg_itms("index").Value="0"
+Set Obj_Lnk_nCnfg_itms=obj_pg_Home.Link(Lnk_nCnfg_itms)
+
+Set Wbedt_cnfg_name=Description.Create
+Wbedt_cnfg_name("name").Value="configname"
+Wbedt_cnfg_name("html tag").Value="INPUT"
+Set Obj_Wbedt_cnfg_name=obj_pg_Home.WebEdit(Wbedt_cnfg_name)
+
+Set Wbele_Act_Ys=Description.Create
+Wbele_Act_Ys("innertext").Value="Yes"
+Wbele_Act_Ys("html tag").Value="LABEL"
+Wbele_Act_Ys("class").Value="radio activeRadio radioA"
+Set Obj_Wbele_Act_Ys=obj_pg_Home.WebElement(Wbele_Act_Ys)
+
+Set Wblst_Prd_nm=Description.Create
+Wblst_Prd_nm("name").Value="_configurationitems_WAR_hpospportlet_configtype"
+Wblst_Prd_nm("html tag").Value="SELECT"
+Set obj_Wblst_Prd_nm=obj_pg_Home.WebList(Wblst_Prd_nm)
+
+Set Wblst_Prd_st=Description.Create
+Wblst_Prd_st("name").Value="_configurationitems_WAR_hpospportlet_configstatus"
+Wblst_Prd_st("html tag").Value="SELECT"
+Set obj_Wblst_Prd_st=obj_pg_Home.WebList(Wblst_Prd_st)
+
+Set Lnk_new_Env=Description.Create
+Lnk_new_Env("name").Value="Create a new environment"
+Lnk_new_Env("html tag").Value="A"
+Lnk_new_Env("index").Value="0"
+Set Obj_Lnk_new_Env=obj_pg_Home.Link(Lnk_new_Env)
+
+Set Wbedt_new_env_name=Description.Create
+Wbedt_new_env_name("name").Value="_configurationitems_WAR_hpospportlet_environmentName"
+Wbedt_new_env_name("html tag").Value="INPUT"
+Set Obj_Wbedt_new_env_name=obj_pg_Home.WebEdit(Wbedt_new_env_name)
+
+Set Wblst_env_SAID=Description.Create
+Wblst_env_SAID("name").Value="_configurationitems_WAR_hpospportlet_envsaid"
+Wblst_env_SAID("html tag").Value="SELECT"
+Set obj_Wblst_env_SAID=obj_pg_Home.WebList(Wblst_env_SAID)
+
+Set Wblst_env_typ=Description.Create
+Wblst_env_typ("name").Value="_configurationitems_WAR_hpospportlet_environmentType"
+Wblst_env_typ("html tag").Value="SELECT"
+Set obj_Wblst_env_typ=obj_pg_Home.WebList(Wblst_env_typ)
+
+Set Wbtn_Sbmt=Description.Create
+Wbtn_Sbmt("html id").Value="createEnvironmentItemBtn"
+Wbtn_Sbmt("name").Value="Submit"
+Wbtn_Sbmt("html tag").Value="BUTTON"
+Set Obj_Wbtn_Sbmt=obj_pg_Home.Webbutton(Wbtn_Sbmt)
+
+Set Wbele_Env_cnfrm=Description.Create
+Wbele_Env_cnfrm("innertext").Value="Environment saved successfully. "
+Wbele_Env_cnfrm("html tag").Value="DIV"
+Wbele_Env_cnfrm("class").Value="portlet-msg-success"
+Set Obj_Wbele_Env_cnfrm=obj_pg_Home.WebElement(Wbele_Env_cnfrm)
+
+Set Wbtn_Cancel=Description.Create
+Wbtn_Cancel("type").Value="button"
+Wbtn_Cancel("name").Value="Cancel"
+Wbtn_Cancel("html tag").Value="BUTTON"
+Set Obj_Wbtn_Cancel=obj_pg_Home.Webbutton(Wbtn_Cancel)
+
+Set Wblst_env_nam=Description.Create
+Wblst_env_nam("name").Value="_configurationitems_WAR_hpospportlet_configenvironmentId"
+Wblst_env_nam("html tag").Value="SELECT"
+Set obj_Wblst_env_nam=obj_pg_Home.WebList(Wblst_env_nam)
+
+Set Wblst_Prd_lst=Description.Create
+Wblst_Prd_lst("name").Value="_configurationitems_WAR_hpospportlet_configproduct"
+Wblst_Prd_lst("html tag").Value="SELECT"
+Set obj_Wblst_Prd_lst=obj_pg_Home.WebList(Wblst_Prd_lst)
+
+Set Wbedt_Cnfg_Desc=Description.Create
+Wbedt_Cnfg_Desc("name").Value="configcomments"
+Wbedt_Cnfg_Desc("html tag").Value="TEXTAREA"
+Set Obj_Wbedt_Cnfg_Desc=obj_pg_Home.WebEdit(Wbedt_Cnfg_Desc)
+
+Set Wblst_Prd_ver=Description.Create
+Wblst_Prd_ver("name").Value="_configurationitems_WAR_hpospportlet_configproductVersion"
+Wblst_Prd_ver("html tag").Value="SELECT"
+Set obj_Wblst_Prd_ver=obj_pg_Home.WebList(Wblst_Prd_ver)
+
+Set Wblst_OS=Description.Create
+Wblst_OS("name").Value="_configurationitems_WAR_hpospportlet_configoperatingSystems"
+Wblst_OS("html tag").Value="SELECT"
+Set obj_Wblst_OS=obj_pg_Home.WebList(Wblst_OS)
+
+Set Wbtn_Cnf_Sbmt=Description.Create
+Wbtn_Cnf_Sbmt("html id").Value="createConfigItemBtn"
+Wbtn_Cnf_Sbmt("name").Value="Submit"
+Wbtn_Cnf_Sbmt("html tag").Value="BUTTON"
+Set Obj_Wbtn_Cnf_Sbmt=obj_pg_Home.Webbutton(Wbtn_Cnf_Sbmt)
+
+Set Cnfig_suc=Description.Create
+Cnfig_suc("innertext").Value="Configuration Item added successfully. ."
+Cnfig_suc("html tag").value="DIV"
+Cnfig_suc("index").Value="1"
+Set Obj_Cnfig_suc=obj_pg_Home.WebElement(Cnfig_suc)
+
+Set wbtbl_Cng_Itm=Description.Create
+wbtbl_Cng_Itm("html tag").Value="TABLE"
+wbtbl_Cng_Itm("index").Value="1"
+Set wbtbl_Cng_Itm=obj_pg_Home.WebTable(wbtbl_Cng_Itm)
+
+
+'======================================== Check Entitlement ========================================
+Set lnk_chk_entl=Description.Create
+lnk_chk_entl("html tag").Value="A" 
+lnk_chk_entl("name").Value="My Entitlements"
+lnk_chk_entl("index").Value="1"
+Set Obj_lnk_chk_entl=obj_pg_Home.Link(lnk_chk_entl)
+	
+Set wbele_chk_entl=Description.Create
+wbele_chk_entl("innertext").Value="Check Entitlement"
+wbele_chk_entl("class").Value="left getting_strt_port_title"
+wbele_chk_entl("html tag").Value="DIV"
+Set Obj_wbele_chk_entl=obj_pg_Home.WebElement(wbele_chk_entl)
+
+Set Wbet_SAID=Description.Create
+Wbet_SAID("name").Value="contract|_checkentitlement_WAR_hpospportlet_contract"
+Wbet_SAID("html tag").Value="INPUT"
+Wbet_SAID("type").Value="text"
+Set Obj_Wbet_SAID=obj_pg_Home.WebEdit(Wbet_SAID)
+
+Set Wbtn_add=Description.Create
+Wbtn_add("name").Value="Add.*"
+Wbtn_add("html tag").Value="INPUT"
+Set obj_Wbtn_add=obj_pg_Home.WebButton(Wbtn_add)
+
+Set Wbtbl_cnt=Description.Create
+Wbtbl_cnt("index").Value="6"
+Wbtbl_cnt("html tag").Value="TABLE"
+Set obj_Wbtbl_cnt=obj_pg_Home.WebTable(Wbtbl_cnt)
+
+Set Wbele_hme=Description.Create
+Wbele_hme("class").Value="fa fa-home fa-home_align"
+Wbele_hme("html tag").Value="SPAN"
+Wbele_hme("Index").Value="0"
+Set obj_Wbele_hme=obj_pg_Home.WebElement(Wbele_hme)
+
+'=================================== CAS_Admin_Child_Objects ===========================
+
+Set Lnk_CAS_admn=Description.Create
+Lnk_CAS_admn("name").Value="CAS Admin  "
+Lnk_CAS_admn("html tag").Value="A"
+Lnk_CAS_admn("index").Value=1
+Set Obj_Lnk_CAS_admn=obj_pg_Home.Link(Lnk_CAS_admn)
+
+Set Wbele_cas_pg=Description.Create
+Wbele_cas_pg("innertext").Value="Create CAS Admin "
+Wbele_cas_pg("html tag").Value="DIV"
+Wbele_cas_pg("index").Value=0
+Set obj_Wbele_cas_pg=obj_pg_Home.WebElement(Wbele_cas_pg)
+
+Set Wblst_srch_by=Description.Create
+Wblst_srch_by("name").Value="_createcasadmin_WAR_hpospportlet_searchByUserType"
+Set Obj_Wblst_srch_by=obj_pg_Home.WebList(Wblst_srch_by)
+
+Set WbEdt_id=Description.Create
+WbEdt_id("name").Value="_createcasadmin_WAR_hpospportlet_searchByUserId"
+Set Obj_WbEdt_id=obj_pg_Home.WebEdit(WbEdt_id)
+
+Set Wbtn_srch=Description.Create
+Wbtn_srch("name").Value="Search"
+Wbtn_srch("html tag").Value="BUTTON"
+Set obj_Wbtn_srch=obj_pg_Home.WebButton(Wbtn_srch)
+
+Set Wbele_err_msg=Description.Create
+Wbele_err_msg("class").Value="portlet-msg-error"
+Wbele_err_msg("html tag").Value="DIV"
+Wbele_err_msg("innertext").Value="User Not Found.*|Company name not found for requested user. "
+Set obj_Wbele_err_msg=obj_pg_Home.WebElement(Wbele_err_msg)
+
+'=================================== Manage_Entitlements_Child_Objects ===========================
+
+Set Lnk_mng_entltmnt=Description.Create
+Lnk_mng_entltmnt("name").Value="Manage Entitlements  "
+Lnk_mng_entltmnt("html tag").Value="A"
+Lnk_mng_entltmnt("index").Value=1
+Set Obj_Lnk_mng_entltmnt=obj_pg_Home.Link(Lnk_mng_entltmnt)
+
+Set Wbele_ent_pg=Description.Create
+Wbele_ent_pg("innertext").Value="Entitlement Management "
+Wbele_ent_pg("html tag").Value="DIV"
+Wbele_ent_pg("index").Value=1
+Set obj_Wbele_ent_pg=obj_pg_Home.WebElement(Wbele_ent_pg)
+
+Set Wblst_ent_srch_by=Description.Create
+Wblst_ent_srch_by("name").Value="_entitlementmanagement_WAR_hpospportlet_searchBy"
+Set Obj_Wblst_ent_srch_by=obj_pg_Home.WebList(Wblst_ent_srch_by)
+
+Set WbEdt_Ent_id=Description.Create
+WbEdt_Ent_id("name").Value="_entitlementmanagement_WAR_hpospportlet_search"
+Set Obj_WbEdt_Ent_id=obj_pg_Home.WebEdit(WbEdt_Ent_id)
+
+Set Wbtn_Ent_srch=Description.Create
+Wbtn_Ent_srch("name").Value="Search"
+Wbtn_Ent_srch("html tag").Value="BUTTON"
+Set obj_Wbtn_Ent_srch=obj_pg_Home.WebButton(Wbtn_Ent_srch)
+
+Set Wblst_ent_said=Description.Create
+Wblst_ent_said("name").Value="_entitlementmanagement_WAR_hpospportlet_saidList"
+Set Obj_Wblst_ent_said=obj_pg_Home.WebList(Wblst_ent_said)
+
+
+'=================================== Email_Notification_Child_Objects ===========================
+
+Set Lnk_Email_Notif=Description.Create
+Lnk_Email_Notif("name").Value="Email Notification  "
+Lnk_Email_Notif("html tag").Value="A"
+Lnk_Email_Notif("index").Value="1"
+Set Obj_Lnk_Email_Notif=obj_pg_Home.Link(Lnk_Email_Notif)
+
+Set Wbele_email_notf=Description.Create
+Wbele_email_notf("innertext").Value="E-mail notifications|Register for e-mail notification.*|Register for change request email notification|Register for Service Request e\-mail notification|Manage e-mail notifications"
+Wbele_email_notf("html tag").Value="H1"
+Set Obj_Wbele_email_notf=obj_pg_Home.WebElement(Wbele_email_notf)
+	
+Set Lnk_Reg_doc=Description.Create
+Lnk_Reg_doc("name").Value="Register for document e-mail notification"
+Lnk_Reg_doc("html tag").Value="A"
+Set Obj_Lnk_Reg_doc=obj_pg_Home.Link(Lnk_Reg_doc)
+
+Set wblst_reg_prd_sel=Description.Create
+wblst_reg_prd_sel("html id").Value="productSelector"
+wblst_reg_prd_sel("name").value="query.products|_emailnotifications_WAR_hpospportlet_query.products"
+Set Obj_wblst_reg_prd_sel=obj_pg_Home.WebList(wblst_reg_prd_sel)
+
+Set wblst_reg_ver_sel=Description.Create
+wblst_reg_ver_sel("name").value="versionSelector|_emailnotifications_WAR_hpospportlet_versionSelector"
+Set Obj_wblst_reg_ver_sel=obj_pg_Home.WebList(wblst_reg_ver_sel)
+
+Set wblst_reg_os_sel=Description.Create
+wblst_reg_os_sel("name").value="osSelector"
+Set Obj_wblst_reg_os_sel=obj_pg_Home.WebList(wblst_reg_os_sel)
+
+Set wblst_reg_Sub_sel=Description.Create
+wblst_reg_Sub_sel("name").value="subProductSelector"
+Set Obj_wblst_reg_Sub_sel=obj_pg_Home.WebList(wblst_reg_Sub_sel)
+
+Set wbchk_doc_typ=Description.Create
+wbchk_doc_typ("name").value="selectedDocumentTypes|_emailnotifications_WAR_hpospportlet_selectedDocumentTypes"
+wbchk_doc_typ("type").value="checkbox"
+wbchk_doc_typ("html tag").value="INPUT"
+wbchk_doc_typ("index").value=0
+Set obj_wbchk_doc_typ=obj_pg_Home.WebCheckBox(wbchk_doc_typ)
+
+Set Wbtn_Regst=Description.Create
+Wbtn_Regst("name").Value="Register"
+Wbtn_Regst("type").Value="submit"
+Set obj_Wbtn_Regst=obj_pg_Home.WebButton(Wbtn_Regst)
+
+Set Wbele_thanks=Description.Create
+Wbele_thanks("innertext").Value="Thank you"
+Wbele_thanks("html tag").Value="H2"
+Set Obj_Wbele_thanks=obj_pg_Home.WebElement(Wbele_thanks)
+
+Set Lnk_Mng_eml=Description.Create
+Lnk_Mng_eml("name").Value="Manage e-mail notifications"
+Lnk_Mng_eml("html tag").Value="A"
+Set Obj_Lnk_Mng_eml=obj_pg_Home.Link(Lnk_Mng_eml)
+
+Set Lnk_Reg_chg_req=Description.Create
+Lnk_Reg_chg_req("name").Value="Register for change request e-mail notification"
+Lnk_Reg_chg_req("html tag").Value="A"
+Set Obj_Lnk_Reg_chg_req=obj_pg_Home.Link(Lnk_Reg_chg_req)
+
+Set Lnk_Reg_ser_req=Description.Create
+Lnk_Reg_ser_req("name").Value="Register for service request e-mail notification"
+Lnk_Reg_ser_req("html tag").Value="A"
+Set Obj_Lnk_Reg_ser_req=obj_pg_Home.Link(Lnk_Reg_ser_req)
+
+Set Lnk_del_Reg=Description.Create
+Lnk_del_Reg("name").Value="Delete an e-mail registrations"
+Lnk_del_Reg("html tag").Value="A"
+Set Obj_Lnk_del_Reg=obj_pg_Home.Link(Lnk_del_Reg)
+
+'================================== SSL_Certificate_Report =====================================
+
+Set Wbele_Oval=Description.Create
+Wbele_Oval("class").Value="rating_g"
+Wbele_Oval("html tag").Value="DIV"
+Wbele_Oval("index").Value=17
+Set Obj_Wbele_Oval=obj_pg_Home.WebElement(Wbele_Oval)
+
+'================================== Flexcare page ==============================================
+
+Set Lnk_flx_care=Description.Create
+Lnk_flx_care("name").Value="Flexcare Credit Management.*"
+Lnk_flx_care("html tag").Value="A"
+Lnk_flx_care("index").Value="1"
+Set Obj_Lnk_flx_care=obj_pg_Home.Link(Lnk_flx_care)
+
+Set wbele_flx_err=Description.Create
+wbele_flx_err("innertext").Value="You don't have permissions to view this page "
+wbele_flx_err("class").Value="portlet-msg-error"
+Set Obj_wbele_flx_err=obj_pg_Home.WebElement(wbele_flx_err)
+
+Set wbele_crd_avl=Description.Create
+wbele_crd_avl("html id").Value="creditAvail"
+wbele_crd_avl("html tag").Value="SPAN"
+wbele_crd_avl("innertext").Value="You have.*"
+Set Obj_wbele_crd_avl=obj_pg_Home.WebElement(wbele_crd_avl)
+
+Set Wbtn_sbt_nw=Description.Create
+Wbtn_sbt_nw("html tag").Value="INPUT"
+Wbtn_sbt_nw("name").Value="Submit New"
+Set Obj_Wbtn_sbt_nw=obj_pg_Home.WebButton(Wbtn_sbt_nw)
+
+Set wblst_id_sel=Description.Create
+wblst_id_sel("html id").Value="entitlementIDSelector"
+wblst_id_sel("default value").Value="Choose an Entitlement ID"
+Set Obj_wblst_id_sel=obj_pg_Home.WebList(wblst_id_sel)
+
+Set Wbtn_next=Description.Create
+Wbtn_next("html id").Value="nextBtn"
+Wbtn_next("html tag").Value="INPUT"
+Wbtn_next("name").Value="Next"
+Set Obj_Wbtn_next=obj_pg_Home.WebButton(Wbtn_next)
+
+Set Wbtn_next1=Description.Create
+Wbtn_next1("html id").Value="nextBtn"
+Wbtn_next1("html tag").Value="INPUT"
+Wbtn_next1("name").Value="Next"
+Set Obj_Wbtn_next1=obj_pg_Home.WebButton(Wbtn_next1)
+
+Set Wbtn_next2=Description.Create
+Wbtn_next2("html id").Value="nextBtn"
+Wbtn_next2("html tag").Value="INPUT"
+Wbtn_next2("name").Value="Next"
+Set Obj_Wbtn_next2=obj_pg_Home.WebButton(Wbtn_next2)
+
+Set wbtd_cmnts=Description.Create
+wbtd_cmnts("html tag").Value="TEXTAREA"
+wbtd_cmnts("name").Value="WebEdit|_flexcarecreditmanagement_WAR_hpospportlet_comment"
+Set obj_wbtd_cmnts=obj_pg_Home.WebEdit(wbtd_cmnts)
+
+Set Wbtn_next3=Description.Create
+Wbtn_next3("html id").Value="nextBtn"
+Wbtn_next3("html tag").Value="INPUT"
+Wbtn_next3("name").Value="Next"
+Set Obj_Wbtn_next3=obj_pg_Home.WebButton(Wbtn_next3)
+
+Set wbchk_agree=Description.Create
+wbchk_agree("html id").Value="agree"
+wbchk_agree("html tag").Value="INPUT"
+wbchk_agree("type").Value="checkbox"
+Set obj_wbchk_agree=obj_pg_Home.WebCheckBox(wbchk_agree)
+
+Set Wbtn_sbt_qt=Description.Create
+Wbtn_sbt_qt("html tag").Value="INPUT"
+Wbtn_sbt_qt("name").Value="Submit Quote|Update Quote"
+Set Obj_Wbtn_sbt_qt=obj_pg_Home.WebButton(Wbtn_sbt_qt)
+
+Set wbele_qt_suc=Description.Create
+wbele_qt_suc("class").Value="portlet-msg-success"
+wbele_qt_suc("html tag").Value="DIV"
+wbele_qt_suc("innertext").Value="Quote submitted Successfully "
+Set Obj_wbele_qt_suc=obj_pg_Home.WebElement(wbele_qt_suc)
+
+Set wbele_qt_suc1=Description.Create
+wbele_qt_suc1("class").Value="portlet-msg-success"
+wbele_qt_suc1("html tag").Value="DIV"
+wbele_qt_suc1("innertext").Value="Quote updated successfully "
+Set Obj_wbele_qt_suc1=obj_pg_Home.WebElement(wbele_qt_suc1)
+
+'================================ Survey preferences ==========================================
+
+Set Lnk_srvy_pre=Description.Create
+Lnk_srvy_pre("name").Value="Survey Preferences.*"
+Lnk_srvy_pre("html tag").Value="A"
+Lnk_srvy_pre("index").Value="1"
+Set Obj_Lnk_srvy_pre=obj_pg_Home.Link(Lnk_srvy_pre)
+
+Set wbele_srvy_pre=Description.Create
+wbele_srvy_pre("innertext").Value="Survey Preferences"
+wbele_srvy_pre("class").Value="left getting_strt_port_title"
+Set Obj_wbele_srvy_pre=obj_pg_Home.WebElement(wbele_srvy_pre)
+
+'=============================== Dashboard page==================================================
+
+Set Lnk_dashboard=Description.Create
+Lnk_dashboard("name").Value="Dashboards.*"
+Lnk_dashboard("html tag").Value="A"
+Lnk_dashboard("index").Value="1"
+Set Obj_Lnk_dashboard=obj_pg_Home.Link(Lnk_dashboard)
+
+Set wbele_dashboard=Description.Create
+wbele_dashboard("innertext").Value="Support Forums "
+wbele_dashboard("class").Value="left getting_strt_port_title"
+Set Obj_wbele_dashboard=obj_pg_Home.WebElement(wbele_dashboard)
+
+Set Lnk_Edit_dashboard=Description.Create
+Lnk_Edit_dashboard("name").Value="Edit Dashboard.*"
+Lnk_Edit_dashboard("html tag").Value="A"
+Lnk_Edit_dashboard("index").Value="1"
+Set Obj_Lnk_Edit_dashboard=obj_pg_Home.Link(Lnk_Edit_dashboard)
+
+'==============================Manuals, patches, search=====================================
+
+Set lnk_Manuals=Description.Create
+lnk_Manuals("html tag").Value="A"
+lnk_Manuals("name").Value="Manuals "
+lnk_Manuals("index").Value=1
+Set Obj_lnk_Manuals=obj_pg_Home.Link(lnk_Manuals)
+
+Set wbele_srch_kng=Description.Create
+wbele_srch_kng("innertext").Value="Self-Solve Knowledge Search "
+wbele_srch_kng("class").Value="left getting_strt_port_title"
+Set Obj_wbele_srch_kng=obj_pg_Home.WebElement(wbele_srch_kng)
+
+Set lnk_patch=Description.Create
+lnk_patch("html tag").Value="A"
+lnk_patch("name").Value="Patches "
+lnk_patch("index").Value=1
+Set Obj_lnk_patch=obj_pg_Home.Link(lnk_patch)
+
+Set lnk_srch=Description.Create
+lnk_srch("html tag").Value="A"
+lnk_srch("name").Value="Search Knowledge  "
+lnk_srch("index").Value=1
+Set Obj_lnk_srch=obj_pg_Home.Link(lnk_srch)
+
+Set lnk_chng_req=Description.Create
+lnk_chng_req("html tag").Value="A"
+lnk_chng_req("name").Value="Change Requests "
+lnk_chng_req("index").Value=1
+Set Obj_lnk_chng_req=obj_pg_Home.Link(lnk_chng_req)
+
+
+'===================Service requests======================================
+Set lnk_SR_dash=Description.Create
+lnk_SR_dash("html tag").Value="A" 
+lnk_SR_dash("name").Value="Service Requests"
+lnk_SR_dash("index").Value="1"
+Set Obj_lnk_SR_dash=obj_pg_Home.Link(lnk_SR_dash)
+
+Set Wbtn_Sbt_New=Description.Create
+Wbtn_Sbt_New("name").Value="Submit New"
+Wbtn_Sbt_New("html tag").Value="INPUT"
+Set obj_Wbtn_Sbt_New=obj_pg_Home.WebButton(Wbtn_Sbt_New)
+
+Set lnk_Prd_News=Description.Create
+lnk_Prd_News("html tag").Value="A"
+lnk_Prd_News("name").Value="Product News "
+lnk_Prd_News("index").Value=1
+Set Obj_lnk_Prd_News=obj_pg_Home.Link(lnk_Prd_News)
+
+Set wbele_prd_nws=Description.Create
+wbele_prd_nws("innertext").Value="Product News "
+wbele_prd_nws("class").Value="left getting_strt_port_title"
+Set Obj_wbele_prd_nws=obj_pg_Home.WebElement(wbele_prd_nws)
+
+Set lnk_Sup_News=Description.Create
+lnk_Sup_News("html tag").Value="A"
+lnk_Sup_News("name").Value="Support News "
+lnk_Sup_News("index").Value=1
+Set Obj_lnk_Sup_News=obj_pg_Home.Link(lnk_Sup_News)
+
+Set wbele_sup_nws=Description.Create
+wbele_sup_nws("innertext").Value="Support News "
+wbele_sup_nws("class").Value="left getting_strt_port_title"
+Set Obj_wbele_sup_nws=obj_pg_Home.WebElement(wbele_sup_nws)
+
+
+
+
+
+
+
+
+

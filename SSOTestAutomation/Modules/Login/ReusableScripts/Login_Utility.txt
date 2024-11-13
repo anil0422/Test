@@ -1,0 +1,9 @@
+
+'This file contains the functions/actions related to "RoHSIndividualBomRollup" module.
+
+
+Public Function Func_DemoFunction()
+	MsgBox "This message is from the module utility function"
+
+End Function
+

@@ -1,0 +1,126 @@
+<Environment>
+	<Variable>
+		<Name>URL</Name>
+		<Value>https://sso-uat.itcs.softwaregrp.com</Value>
+	</Variable>
+	<Variable>
+		<Name>SSL_URL</Name>	
+		<Value>https://softwaresupport.softwaregrp.com// sso-uat.itcs.softwaregrp.com // sso-itg.ext.hpe.com</Value>
+	</Variable>
+	<Variable>
+		<Name>URL1</Name>
+		<Value>auto_uft219@hpe.com seattle_UAT07@hpe.com https://sso-itg.ext.hpe.com https://softwaresupport.hpe.com/auto_pro_uft76@hpe.com/https://sso-dev2.corp.int.hpe.com Internet_Explorer/Firefox/Chrome</Value>
+	</Variable>
+	<Variable> 
+               	<Name>Browser_Name</Name> 
+               	<Value>Chrome</Value> 
+        	</Variable> 
+	<Variable> 
+               	<Name>User</Name> 
+               	<Value>SSO_Rebranding07@hpe.com</Value> 
+        	</Variable> 
+	<Variable> 
+               	<Name>Pwd</Name> 
+               	<Value>test@123</Value> 
+        	</Variable> 
+      	  <Variable> 
+              	<Name>Browser_IE</Name> 
+                <Value>C:\Program Files (x86)\Internet Explorer\iexplore.exe</Value> 
+     	   </Variable>
+	<Variable> 
+               	<Name>Browser_FF</Name> 
+               	<Value>C:\Program Files (x86)\Mozilla Firefox\firefox.exe</Value> 
+        	</Variable> 
+      	  <Variable>
+		<Name>strSMTPServer</Name>
+		<Value>smtp3.hp.com</Value>
+	</Variable>
+	<Variable>
+		<Name>strSenderAddress</Name>
+		<Value>TestAutomation-group@hp.com</Value>
+	</Variable>
+	<Variable>
+		<Name>strRecipientAddress</Name>
+		<Value>pavanraj.idoor@hp.com</Value>
+	</Variable>
+	<Variable>
+		<Name>strCcRecipientAddress</Name>
+		<Value>pavanraj.idoor@hp.com</Value>
+	</Variable>
+	<Variable>
+		<Name>strBCcRecipientAddress</Name>
+		<Value>anil.kum.venkataramana-reddy@hpe.com</Value>
+	</Variable>
+	<Variable>
+		<Name>strEmailSubject</Name>
+		<Value>SSO - Automated Test Execution Report</Value>
+	</Variable>
+	<Variable>
+		<Name>strBodyMessage</Name>
+		<Value><![CDATA[<HTML><HEAD><TITLE></TITLE></HEAD><BODY LINK='#0000ff'><br><p>Dear SSO Test Automation Member,<br><br>You are receiving this email since you are a part of Test Automation Group - 'SSO'. Please find the attached detailed report for the respective test case execution.</p><p>If you need more information regarding the SSO Test Automation program or results, please <a href=mailto:SSO-Test-Automation> Contact Us </a>. Thank you for your continued participation.</p><p>Sincerely,<br>SSO Test Automation Team<br><br><p><font face="Verdana, Arial, Helvetica, sans-serif" color="#000000" size="1">If you do not want to receive any test execution report, please <a href="mailto:kukkapally@dxc.com?subject=Unsubscribe - Stop sending test execution report"> Unsubscribe </a></p>]]></Value>
+	</Variable>
+	<Variable>
+		<Name>ApplicationEnv</Name>
+		<Value>ITG</Value>
+	</Variable>
+	<Variable>
+		<Name>GlobalVariables</Name>
+		<Value>C:\SSOTestAutomation\CommonLibrary\GlobalVariables\SSOGlobalVariables.vbs</Value>
+	</Variable>
+	<Variable>
+		<Name>SSOReusableFunctions</Name>
+		<Value>C:\SSOTestAutomation\CommonLibrary\UtilityFunctions\SSOCommonReusableutilities.vbs</Value>
+	</Variable>
+	<Variable>
+		<Name>SSOResultFunctions</Name>
+		<Value>C:\SSOTestAutomation\CommonLibrary\ReusableScripts\SSOResultLibrarys.vbs</Value>
+	</Variable>
+	<Variable>
+		<Name>SSOHTMLReportFunctions</Name>
+		<Value>C:\SSOTestAutomation\CommonLibrary\ReusableScripts\SSOHTMLReportLibrary.vbs</Value>
+	</Variable>
+	<Variable>
+		<Name>QC_GlobalVariablePath</Name>
+		<Value><![CDATA[[QualityCenter] Subject\Applications\248240:SSO\SSOTestAutomation\CommonLibrary\GlobalVariables]]></Value>
+	</Variable>
+	<Variable>
+		<Name>QC_HTMLReportLibraryPath</Name>
+		<Value><![CDATA[[QualityCenter] Subject\Applications\248240:SSO\SSOTestAutomation\CommonLibrary\ReusableScripts]]></Value>
+	</Variable>
+	<Variable>
+		<Name>QC_ResultLibraryPath</Name>
+		<Value><![CDATA[[QualityCenter] Subject\Applications\248240:SSO\SSOTestAutomation\CommonLibrary\ReusableScripts]]></Value>
+	</Variable>
+	<Variable>
+		<Name>QC_CommonReusabilityPath</Name>
+		<Value><![CDATA[[QualityCenter] Subject\Applications\248240:SSO\SSOTestAutomation\CommonLibrary\UtilityFunctions]]></Value>
+	</Variable>
+	<Variable>
+		<Name>QC_DriverDataXLSPath</Name>
+		<Value><![CDATA[[QualityCenter] Subject\Applications\248240:SSO\SSOTestAutomation\DriverData]]></Value>
+	</Variable>
+	<Variable>
+		<Name>QC_MasterDriverPath</Name>
+		<Value><![CDATA[[QualityCenter] Subject\Applications\248240:SSO\SSOTestAutomation\MasterDriver]]></Value>
+	</Variable>
+	<Variable>
+		<Name>QC_SSOControlsPath</Name>
+		<Value><![CDATA[[QualityCenter] Subject\Applications\248240:SSO\SSOTestAutomation\Modules]]></Value>
+	</Variable>
+	<Variable>
+		<Name>QC_SSOReusableUtilityPath</Name>
+		<Value><![CDATA[[QualityCenter] Subject\Applications\248240:SSO\SSOTestAutomation\Modules]]></Value>
+	</Variable>
+	<Variable>
+		<Name>QC_SSOTestDataPath</Name>
+		<Value><![CDATA[[QualityCenter] Subject\Applications\248240:SSO\SSOTestAutomation\Modules]]></Value>
+	</Variable>
+	<Variable>
+		<Name>QC_SummaryReportPath</Name>
+		<Value><![CDATA[[QualityCenter] Subject\Applications\248240:SSO\SSOTestAutomation\TestResults\SummaryReport]]></Value>
+	</Variable>
+	<Variable>
+		<Name>QC_DetailedReportPath</Name>
+		<Value><![CDATA[[QualityCenter] Subject\Applications\248240:SSO\SSOTestAutomation\TestResults\DetailedResults]]></Value>
+	</Variable>
+</Environment>
